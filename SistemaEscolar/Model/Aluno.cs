@@ -8,10 +8,11 @@ namespace Model
 {
     public class Aluno
     {
-        private int matricula;
         private string nome;
+        private int matricula;
 
-        public int Matricula { get => matricula; set => matricula = value; }
         public string Nome { get => nome; set => nome = value; }
+        public int Matricula { get => matricula; set => matricula = value; }
+
     }
 }
