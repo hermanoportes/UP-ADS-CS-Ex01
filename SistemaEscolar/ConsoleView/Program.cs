@@ -12,78 +12,89 @@ namespace ConsoleView
     {
         static void Main(string[] args)
         {
-            //Menu            
-            Console.WriteLine("1 - Inserir Aluno");
-            Console.WriteLine("2 - Excluir Aluno");
-            Console.WriteLine("3 - Listar Alunos");
+            AlunoController alunoController = new AlunoController();
+            ProfessorController professorController = new ProfessorController();
+            DisciplinaController disciplinaController = new DisciplinaController();
+
+            int operacao = 0;
             do
             {
-                Console.Write("Digite uma Opção: ");
-                int operacao = int.Parse(Console.ReadLine());
-            }while()
+                Console.WriteLine("");
+                Console.WriteLine("=======MENU=======");
+                Console.WriteLine("1- Cadastrar Aluno");
+                Console.WriteLine("2- Listar Alunos");
+                Console.WriteLine("3- Cadastrar Professor");
+                Console.WriteLine("4- Listar Professores");
+                Console.WriteLine("5- Cadastrar Disciplina");
+                Console.WriteLine("6- Listar Disciplina");
+                Console.WriteLine("0- Sair");
+                            
+                Console.Write("Escolha uma opção: ");
+                operacao = int.Parse(Console.ReadLine());
             
+                Console.WriteLine("");
 
-            switch (operacao)
-            {
-                case 1:
+                switch (operacao)
+                {
+                    case 0:
+                        //Sair
+                        break;
+                    case 1:
                     {
-                        Console.WriteLine("Inserir Aluno:");
+                        //Cadastrar alunos
+                        Aluno a = alunoController.CadastrarAluno();
+                        alunoController.InserirAluno(a);
                     }
-                    break;
-                case 2:
+                        break;
+                    case 2:
                     {
-                        Console.WriteLine("Excluir Aluno:");
+                        //Listar alunos
+                        foreach (Aluno aluno in alunoController.ListarAlunos())
+                        {
+                            alunoController.ImprimirDadosAlunos(aluno);
+                        }
                     }
-                    break;
-                case 3:
-                    {
-                        Console.WriteLine("Listar Aluno:");
-                    }
-                    break;
-                default:
-                    break;            
-            }
+                        break;
+                    case 3:
+                        {
+                            //Cadastrar professores
+                            Professor p = professorController.CadastrarProfessor();
+                            professorController.InserirProfessor(p);
+                        }
+                        break;
+                    case 4:
+                        {
+                            //Listar professores
+                            foreach (Professor professor in professorController.ListarProfessores())
+                            {
+                                professorController.ImprimirDadosProfessor(professor);
+                            }
+                        }
+                        break;
+                    case 5:
+                        {
+                            //Cadastrar Disciplinas
+                            Disciplina novaDisciplina = disciplinaController.CadastrarDisciplina();
+                            disciplinaController.InserirDisciplina(novaDisciplina);
+                        }
+                        break;
+                    case 6:
+                        {
+                            //Listar disciplina
+                            foreach (Disciplina disciplina in disciplinaController.ListarDisciplinas())
+                            {
+                                disciplinaController.ImprimirDadosDisciplina(disciplina);
+                            }
+                            break;
+                        }
 
+
+                    default:
+                        Console.WriteLine("Opção inválida.");
+                        break;
+                }
+            } while (operacao != 0);
             Console.ReadKey();
-
-            Aluno novoAluno = new Aluno();
-
-            /*Console.WriteLine("Cadastrar novo Aluno:");
-            Console.Write("Nome: ");
-            novoAluno.Nome = Console.ReadLine(); //set Aluno.nome
-
-            Console.Write("Matrícula: ");
-            novoAluno.Matricula = int.Parse(Console.ReadLine()); //set Aluno.matricula
-
-            Console.WriteLine("Nome: " + novoAluno.Nome);
-            Console.WriteLine("Matrícula: " + novoAluno.Matricula);
-
-            Console.ReadKey();*/
-
-            //========================================================================
-
-
-            //Aluno novoAluno = CadastrarAluno();
-
-            /* while (novoAluno.Nome != "")
-             {
-                 AlunoController.InserirAluno(a);
-             }
-
-
-             Aluno b = CadastrarAluno();
-             AlunoController.InserirAluno(b);
-
-             Aluno c = CadastrarAluno();
-             AlunoController.InserirAluno(c);
-
-             foreach (Aluno aluno in AlunoController.ListarAlunos())
-             {
-                 AlunoController.ImprimirDadosAluno(aluno);
-             }
-             Console.ReadKey();*/
-
-
-        }
+        }        
     }
 }

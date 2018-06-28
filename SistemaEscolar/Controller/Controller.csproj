@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlunoController.cs" />
+    <Compile Include="DisciplinaController.cs" />
+    <Compile Include="ProfessorController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Aluno
+    public class Professor
     {
-        private int matricula;
+        private int iD;
         private string nome;
 
-        public int Matricula { get => matricula; set => matricula = value; }
+        public int ID { get => iD; set => iD = value; }
         public string Nome { get => nome; set => nome = value; }
     }
 }
