@@ -94,7 +94,6 @@ namespace ConsoleView
                         break;
                 }
             } while (operacao != 0);
-            Console.ReadKey();
         }        
     }
 }
