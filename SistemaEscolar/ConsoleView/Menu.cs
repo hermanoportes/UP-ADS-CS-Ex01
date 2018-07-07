@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleView
 {
-    class Program
+    public class Menu
     {
         public enum MenuPrincipal
         {
@@ -17,38 +17,16 @@ namespace ConsoleView
             Professores,
             Disciplinas
         }
-        public enum MenuUsuarios
-        {
-            Voltar,
-            Cadastrar,
-            Alterar,
-            Exluir,
-            Listar
-        }
-
-        static void Main(string[] args)
-        {
-            var opcao = 0;
-            do
-            {
-                opcao = MostrarMenuPrincipal();
-
-                Console.WriteLine();
-                Console.Write("Pressione qualquer tecla para continuar");
-                Console.ReadKey();
-            } while (opcao != 0);
-        }
-
         public static int MostrarMenuPrincipal()
         {
             Console.Clear();
-
-            Console.WriteLine("\n=======MENU============== \n 1- Alunos \n 2- Professores \n 3- Disciplinas \n 0- Sair");
+            
+            Console.WriteLine("\n=======MENU============== \n 1- Alunos \n 2- Professores \n 3- Disciplinas \n 0- Sair");                        
             var opcao = (MenuPrincipal)EscolherOpcao();
 
             switch (opcao)
             {
-                case MenuPrincipal.Sair:
+                case MenuPrincipal.Sair:                   
                     break;
                 case MenuPrincipal.Alunos:
                     ConsoleView.MenuAlunos.MostrarMenuAlunos();

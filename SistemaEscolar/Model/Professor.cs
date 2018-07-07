@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Professor
+    public class Professor: Usuario
     {
-        private int iD;
-        private string nome;
 
-        public int ID { get => iD; set => iD = value; }
-        public string Nome { get => nome; set => nome = value; }
-    }
+    }    
+        
 }

@@ -6,12 +6,27 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Aluno
+    class Aluno : Usuario
     {
+        public static List<Aluno> listaAlunos = new List<Aluno>();
+
         private int matricula;
-        private string nome;
 
         public int Matricula { get => matricula; set => matricula = value; }
-        public string Nome { get => nome; set => nome = value; }
+                
+        public static void Inserir(Aluno aluno)
+        {
+            listaAlunos.Add(aluno);            
+        }
+
+        public static void Excluir(Aluno aluno)
+        {
+            listaAlunos.Remove(aluno);
+        }
+        
+        public static Aluno GetAluno(int matricula)
+        {
+            return listaAlunos.FirstOrDefault(a => a.Matricula == matricula);
+        }
     }
 }

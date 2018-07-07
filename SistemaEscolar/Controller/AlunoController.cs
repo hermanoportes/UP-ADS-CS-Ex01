@@ -7,43 +7,136 @@ using System.Threading.Tasks;
 
 namespace Controller
 {
-
-
     public class AlunoController
     {
-        List<Aluno> tabelaAlunos = new List<Aluno>();
-       
-        public Aluno CadastrarAluno()
+        public void Cadastrar(Aluno aluno)
         {
-            Aluno novoAluno = new Aluno();
+            Console.Clear();
+            
+            Console.WriteLine();
+            Console.WriteLine("====== CADASTRAR ALUNO ======");
+           
+            aluno.Nome = Pergunta(" Nome: ");
+           
+            aluno.Matricula = PerguntaInt(" Matrícula: ");
 
-            Console.WriteLine("Cadastrar novo Aluno:");
-            Console.Write("Nome: ");
-            novoAluno.Nome = Console.ReadLine(); //set Aluno.nome
+            Console.WriteLine();
+            Console.WriteLine("Aluno inserido com sucesso.");
+            
+            Console.Write("Pressione qualquer tecla para continuar.");
+            Console.ReadKey();
 
-            Console.Write("Matrícula: ");
-            novoAluno.Matricula = int.Parse(Console.ReadLine()); //set Aluno.matricula
-
-            return novoAluno;
+            Aluno.Inserir(aluno);            
         }
 
-        public void InserirAluno(Aluno a)
+        string Pergunta(string questao)
         {
-            tabelaAlunos.Add(a);
+            Console.Write(questao);            
+            return Console.ReadLine();
         }
 
-        public void ImprimirDadosAlunos(Aluno aluno)
+        int PerguntaInt(string questao)
         {
+            Console.Write(questao);
+            return int.Parse(Console.ReadLine());
+        }
+        
+        public void ListarAlunos() // Listar todos Alunos
+        {
+            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine("====== ALUNOS ======");            
+            Console.WriteLine("Matrícula \tNome");
+            foreach (Aluno novoAluno in Aluno.listaAlunos)
+            {
+                Console.WriteLine(novoAluno.Matricula + "\t\t" + novoAluno.Nome);
+            }            
+        }
+
+        public void AlterarAluno()
+        {
+            ListarAlunos();
+
             Console.WriteLine("");
-            Console.WriteLine("Nome: " + aluno.Nome);
-            Console.WriteLine("Matrícula: " + aluno.Matricula);
+            Console.WriteLine("Alterar Dados");           
+            Console.Write("Matrícula: ");
+            int matricula = int.Parse(Console.ReadLine());
+
+            Aluno aluno = Aluno.GetAluno(matricula);
+           
+            if (aluno != null)
+            {
+                Console.Clear();
+                Console.WriteLine("");
+                Console.WriteLine("Alterar Dados do Aluno:");
+                Console.WriteLine("============================================");
+                Console.WriteLine("Matrícula \tNome");
+                Console.WriteLine(aluno.Matricula + "\t\t" + aluno.Nome);
+                Console.WriteLine("============================================");
+
+                Console.Write("Novo nome: ");
+                aluno.Nome = Console.ReadLine();
+            } else
+            {
+                Console.WriteLine("Matrícula não encontrada.");
+                Console.WriteLine("");                
+            }
+            Console.Write("Pressione qualquer tecla para continuar");
+            Console.ReadKey();
+
         }
 
-
-        public List<Aluno> ListarAlunos()
+        //=========================================================================================
+        public void ExcluirAluno()
         {
-            return tabelaAlunos;
-        }
+            ListarAlunos();
 
+            Console.WriteLine("");
+            Console.WriteLine("Excluir Aluno");            
+            Console.Write("Matrícula: ");
+            int matricula = int.Parse(Console.ReadLine());         
+
+            Aluno aluno = Aluno.GetAluno(matricula);
+
+            if (aluno != null)
+            {
+                Console.Clear();
+                Console.WriteLine("");
+                Console.WriteLine("Excluir Aluno");
+                Console.WriteLine("============================================");
+                Console.WriteLine("Matrícula \tNome");
+                Console.WriteLine(aluno.Matricula + "\t\t" + aluno.Nome);
+                Console.WriteLine("============================================");
+
+                char confirma;
+                do
+                {
+                    Console.Write("Voce deseja excluir esse aluno(S/N)? ");
+                    string simOuNao = Console.ReadLine();
+                    confirma = Char.Parse(simOuNao);
+
+                    if (Char.ToUpper(confirma) == 'S')
+                    {
+                        Console.WriteLine("Aluno excluido com sucesso.");
+                        Aluno.Excluir(aluno);
+                    }
+                    else if (Char.ToUpper(confirma) == 'N')
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Console.Write("Digite 'S' ou 'N'");
+                    }
+                } while (Char.ToUpper(confirma) != 'S' && Char.ToUpper(confirma) == 'N');
+            }
+            else
+            {
+                Console.WriteLine("Matrícula não encontrada.");
+            }                
+            Console.WriteLine("");
+            Console.Write("Pressione qualquer tecla para continuar");
+            Console.ReadKey();
+        }
     }
 }
